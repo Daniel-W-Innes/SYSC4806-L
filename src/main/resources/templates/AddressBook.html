@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>AddressBook</title>
+    <script src="AddressBook.js"></script>
+</head>
+<body>
+<h1 style="text-align: center" th:text="'AddressBook Name: ' + ${AddressBookModel.name}"></h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="BuddyInfoModel : ${Buddies}">
+        <td th:text="${BuddyInfoModel.id}"></td>
+        <td th:text="${BuddyInfoModel.name}"></td>
+        <td th:text="${BuddyInfoModel.address}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h1 style="text-align: center">Add new buddy</h1>
+
+<iframe id="dummyframe" name="dummyframe" style="display: none;"></iframe>
+<form id="newBuddy" method="POST" target="dummyframe" th:action="|/addressbook/${AddressBookModel.name}/buddies/form|"
+      th:object="${BuddyInfoModel}">
+    <label for="name">Name: </label><input class="form-control" id="name" placeholder="Enter name" th:form="*{name}"
+                                           type="text">
+    <label for="address">Address: </label><input class="form-control" id="address" placeholder="Enter address"
+                                                 th:form="*{address}" type="text">
+    <button class="btn" type="submit">Submit</button>
+</form>
+</body>
+</html>
