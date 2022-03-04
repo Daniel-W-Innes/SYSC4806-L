@@ -49,7 +49,8 @@ public class BuddyInfoModel {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof BuddyInfoModel that)) return false;
+        if (!(o instanceof BuddyInfoModel)) return false;
+        BuddyInfoModel that = (BuddyInfoModel) o;
         return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(address, that.address);
     }
 
